@@ -46,9 +46,18 @@ async function listarProdutos() {
 }
 
 //Removendo produtos
-removerProduto();
+// removerProduto();
 async function removerProduto() {
     const retorno = 
         await Produto.deleteOne({descricao:'Arroz'});
+    console.log(retorno);
+}
+
+atualizarProduto();
+async function atualizarProduto() {
+    const retorno = await Produto.updateOne(
+        {descricao:'Feijão'},
+        {$set:{validade: new Date('2025-12-10')}}
+    )
     console.log(retorno);
 }
