@@ -38,9 +38,17 @@ async function salvarProduto() {
 }
 
 //Listando produtos
-listarProdutos();
+// listarProdutos();
 async function listarProdutos() {
     const produtos = await Produto
         .find({preco:{ $gte: 5 }});
     console.log(produtos);
+}
+
+//Removendo produtos
+removerProduto();
+async function removerProduto() {
+    const retorno = 
+        await Produto.deleteOne({descricao:'Arroz'});
+    console.log(retorno);
 }
