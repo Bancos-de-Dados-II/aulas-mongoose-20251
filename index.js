@@ -27,13 +27,20 @@ const Produto = mongoose.model('Produto',
     produtoSchema);
 
 //Salvando um produto
-salvarProduto();
+// salvarProduto();
 async function salvarProduto() {
     await Produto.create({
-        descricao: 'Arroz',
-        preco: 5,
-        categoria: 'Alimentício',
-        validade: new Date('2025-10-03')
+        descricao: 'Feijão',
+        preco: 8.50,
+        categoria: 'Alimentício'
     });
     console.log('Produto salvo com sucesso');
+}
+
+//Listando produtos
+listarProdutos();
+async function listarProdutos() {
+    const produtos = await Produto
+        .find({preco:{ $gte: 5 }});
+    console.log(produtos);
 }
