@@ -21,3 +21,19 @@ const produtoSchema = new mongoose.Schema({
         default: Date.now
     }
 });
+
+//Criando o modelo
+const Produto = mongoose.model('Produto', 
+    produtoSchema);
+
+//Salvando um produto
+salvarProduto();
+async function salvarProduto() {
+    await Produto.create({
+        descricao: 'Arroz',
+        preco: 5,
+        categoria: 'Alimentício',
+        validade: new Date('2025-10-03')
+    });
+    console.log('Produto salvo com sucesso');
+}
