@@ -18,3 +18,25 @@ const usuarioSchema = new mongoose.Schema({
 });
 const Usuario = mongoose.model('Usuario', 
     usuarioSchema);
+
+const taskSchame = new mongoose.Schema({
+    titulo: String,
+    descricao: String,
+    dataHora: Date,
+    tipo:{
+        type: String,
+        enum: ['Pessoal', 'Profissional'],
+        required: true
+    },
+    local: {
+        type: {
+            type: String,
+            enum: ['Point'], 
+            required: true
+        },
+        coordinates: {
+            type: [Number],
+            required: true
+        }
+    }
+});
