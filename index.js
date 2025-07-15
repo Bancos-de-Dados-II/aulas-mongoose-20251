@@ -57,3 +57,12 @@ taskSchema.index({
     }
 });
 const Task = mongoose.model('Task', taskSchema);
+
+adicionarUsuario();
+async function adicionarUsuario() {
+    const retorno = await Usuario.create({
+        email: 'maria@gmail.com',
+        nome: 'Maria'
+    });
+    console.log(retorno);
+}
