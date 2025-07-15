@@ -8,56 +8,13 @@ async function main() {
     console.log('Conectado ao MongoDB');
 }
 
-//Definindo o schema
-const produtoSchema = new mongoose.Schema({
-    descricao: String,
-    preco: Number,
-    categoria:{
+const usuarioSchema = new mongoose.Schema({
+    email:{
         type: String,
-        enum: ['Alimentício', 'Limpeza', 'Higiene']
+        unique: true,
+        required: true
     },
-    validade: {
-        type: Date,
-        default: Date.now
-    }
+    nome: String
 });
-
-//Criando o modelo
-const Produto = mongoose.model('Produto', 
-    produtoSchema);
-
-//Salvando um produto
-// salvarProduto();
-async function salvarProduto() {
-    await Produto.create({
-        descricao: 'Feijão',
-        preco: 8.50,
-        categoria: 'Alimentício'
-    });
-    console.log('Produto salvo com sucesso');
-}
-
-//Listando produtos
-// listarProdutos();
-async function listarProdutos() {
-    const produtos = await Produto
-        .find({preco:{ $gte: 5 }});
-    console.log(produtos);
-}
-
-//Removendo produtos
-// removerProduto();
-async function removerProduto() {
-    const retorno = 
-        await Produto.deleteOne({descricao:'Arroz'});
-    console.log(retorno);
-}
-
-atualizarProduto();
-async function atualizarProduto() {
-    const retorno = await Produto.updateOne(
-        {descricao:'Feijão'},
-        {$set:{validade: new Date('2025-12-10')}}
-    )
-    console.log(retorno);
-}
+const Usuario = mongoose.model('Usuario', 
+    usuarioSchema);
