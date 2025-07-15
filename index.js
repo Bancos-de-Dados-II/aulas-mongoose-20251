@@ -19,7 +19,7 @@ const usuarioSchema = new mongoose.Schema({
 const Usuario = mongoose.model('Usuario', 
     usuarioSchema);
 
-const taskSchame = new mongoose.Schema({
+const taskSchema = new mongoose.Schema({
     titulo: String,
     descricao: String,
     dataHora: Date,
@@ -45,3 +45,15 @@ const taskSchame = new mongoose.Schema({
         required: true
     }
 });
+
+taskSchema.index({
+    titulo: 'text',
+    descricao: 'text'
+},{
+    default_language: 'portuguese',
+    weights:{
+        titulo: 2,
+        descricao: 1
+    }
+});
+const Task = mongoose.model('Task', taskSchema);
