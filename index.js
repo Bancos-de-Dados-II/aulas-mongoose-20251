@@ -58,11 +58,26 @@ taskSchema.index({
 });
 const Task = mongoose.model('Task', taskSchema);
 
-adicionarUsuario();
+// adicionarUsuario();
 async function adicionarUsuario() {
     const retorno = await Usuario.create({
         email: 'maria@gmail.com',
         nome: 'Maria'
     });
     console.log(retorno);
+}
+
+adicionarTarefa();
+async function adicionarTarefa() {
+    await Task.create({
+        titulo: 'Fazer o projeto de Banco II',
+        descricao: 'Fazer o projeto de Mongoose',
+        dataHora: new Date('2025-08-04T15:30:00'),
+        tipo: 'Profissional',
+        local: {
+            type: 'Point',
+            coordinates:[-38.544, -6.889]
+        },
+        userId: '6876a1da6f59fba41dca4def'
+    });
 }
